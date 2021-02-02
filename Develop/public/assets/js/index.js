@@ -33,7 +33,7 @@ const getNotes = () =>
     },
   });
 
-const saveNote = (note) =>
+const saveNote = (note) => 
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -41,6 +41,7 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
+
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -116,6 +117,7 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  console.log("renderNoteList", notes);
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -165,6 +167,7 @@ const renderNoteList = async (notes) => {
   if (window.location.pathname === '/notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
+  console.log(jsonNotes);
 };
 
 // Gets notes from the db and renders them to the sidebar
@@ -176,5 +179,11 @@ if (window.location.pathname === '/notes') {
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
-
 getAndRenderNotes();
+
+// module.exports = {
+//   getAndRenderNotes,
+//   saveNote,
+//   getNotes,
+//   renderNoteList
+// };
