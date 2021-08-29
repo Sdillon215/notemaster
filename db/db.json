@@ -1,7 +1,12 @@
 [
   {
-    "title": "new note",
-    "text": "its a note",
+    "title": "issa note",
+    "text": "notes n things",
     "id": 0
+  },
+  {
+    "title": "more notes",
+    "text": "n\no\nt\ne\ns",
+    "id": 1
   }
 ]

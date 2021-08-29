@@ -25,7 +25,7 @@ router.post('/notes', (req, res) => {
         } else {
             let notes = [];
             if (data) {
-            notes = JSON.parse(data);
+                notes = JSON.parse(data);
             };
             let note = req.body;
             note.id = notes.length;
@@ -42,6 +42,34 @@ router.post('/notes', (req, res) => {
             res.json(notes)
         }
     });
+});
+
+router.delete('/notes/:id', (req, res) => {
+    fs.readFile('./db/db.json', (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            let notes = [];
+            if (data) {
+                notes = JSON.parse(data);
+            };
+            let note = req.body;
+            note.id = req.params.id;
+            notes.splice(note.id, 1);
+            console.log("db.json", notes);
+            fs.writeFileSync(
+                path.join(__dirname, '../db/db.json'),
+                JSON.stringify(notes, null, 2),
+                (error, data) => {
+                    if (error) {
+                        throw error;
+                    }
+                    return res.json(notes);
+                }
+            );
+        }
+    });
+    res.json(req.params.id);
 });
 
 module.exports = router;
