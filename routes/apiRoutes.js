@@ -56,7 +56,6 @@ router.delete('/notes/:id', (req, res) => {
             let note = req.body;
             note.id = req.params.id;
             notes.splice(note.id, 1);
-            console.log("db.json", notes);
             fs.writeFileSync(
                 path.join(__dirname, '../db/db.json'),
                 JSON.stringify(notes, null, 2),
